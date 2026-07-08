@@ -1,0 +1,18 @@
+.page-lede { max-width: 640px; color: var(--ink-soft); }
+
+.mode-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+@media (max-width: 720px) { .mode-cards { grid-template-columns: 1fr; } }
+
+.mode-card { border-top: 5px solid; }
+.mode-card__lists {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.mode-card__lists ul { margin: 0.4rem 0 0; padding-left: 1.1rem; font-size: 0.9rem; }
+.mode-card__speed { color: var(--ink-soft); margin: 0; font-size: 0.85rem; }

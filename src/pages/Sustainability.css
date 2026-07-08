@@ -1,4 +1,6 @@
-.sustain-chart { margin-bottom: 1rem; }
+.sustain-chart {
+  margin-bottom: 1rem;
+}
 
 .goal-bar {
   height: 10px;
@@ -11,4 +13,20 @@
   height: 100%;
   background: var(--line-cycle);
   transition: width 0.3s ease;
+}
+.sustain-log {
+  list-style: none;
+  padding: 0;
+  margin: 1.25rem 0 0;
+  display: grid;
+  gap: 0.5rem;
+}
+.sustain-log li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
 }

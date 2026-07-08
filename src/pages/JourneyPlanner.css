@@ -1,0 +1,19 @@
+.planner-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 1rem;
+  align-items: end;
+  margin-bottom: 1.5rem;
+}
+.planner-form .field { margin-bottom: 0; }
+@media (max-width: 720px) { .planner-form { grid-template-columns: 1fr; } }
+
+.planner-error { color: #a3253a; }
+
+.planner-results { list-style: none; padding: 0; display: grid; gap: 1rem; }
+.planner-results__head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 0.6rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border);
+}
+.planner-results__head .data-figure { font-size: 1.3rem; }
+.planner-legs { margin: 0; padding-left: 1.2rem; font-size: 0.9rem; display: grid; gap: 0.3rem; }

@@ -24,7 +24,9 @@ export function useApiData(fetcher, deps = [], enabled = true) {
     return () => {
       cancelled = true;
     };
+    // deps is intentionally caller-supplied and dynamic (see JSDoc above).
     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // oxlint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
 
   return state;

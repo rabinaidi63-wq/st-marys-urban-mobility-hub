@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import RouteDivider from '../components/RouteDivider.jsx';
 import { TRANSPORT_MODES } from '../data/transportModes.js';
 import { estimateFare } from '../data/fareRates.js';

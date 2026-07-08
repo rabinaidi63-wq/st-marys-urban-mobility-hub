@@ -13,10 +13,22 @@ async function tflFetch(path, params = {}) {
   if (APP_KEY) url.searchParams.set('app_key', APP_KEY);
 
   const res = await fetch(url.toString());
-  if (!res.ok) {
+  // TfL returns 300 Multiple Choices (with a JSON disambiguation body,
+  // not an error) when a free-text place name is ambiguous — that's a
+  // valid response we need to read, not a failure.
+  if (!res.ok && res.status !== 300) {
     throw new Error(`TfL API error ${res.status}: ${res.statusText}`);
   }
   return res.json();
+}
+
+// Picks the best-matching candidate from a TfL disambiguation block.
+// Returns the original text unchanged if TfL already resolved it uniquely.
+function resolveLocation(original, disambiguation) {
+  const options = disambiguation?.disambiguationOptions;
+  if (!options || options.length === 0) return original;
+  const best = [...options].sort((a, b) => (b.matchQuality || 0) - (a.matchQuality || 0))[0];
+  return best?.parameterValue || null;
 }
 
 // Live disruption/status feed for one or more transport modes.
@@ -26,8 +38,26 @@ export function getLineStatus(modes = ['tube', 'bus', 'dlr', 'overground']) {
 }
 
 // Journey planner: route options between two named or coordinate locations.
-export function planJourney(from, to) {
-  return tflFetch(`/Journey/JourneyResults/${encodeURIComponent(from)}/to/${encodeURIComponent(to)}`);
+// Transparently resolves TfL's "300 Multiple Choices" disambiguation by
+// picking the best-quality match on each side, then re-querying.
+export async function planJourney(from, to) {
+  let result = await tflFetch(`/Journey/JourneyResults/${encodeURIComponent(from)}/to/${encodeURIComponent(to)}`);
+
+  const isDisambiguation = result?.$type?.includes('DisambiguationResult');
+  if (isDisambiguation) {
+    const resolvedFrom = resolveLocation(from, result.fromLocationDisambiguation);
+    const resolvedTo = resolveLocation(to, result.toLocationDisambiguation);
+
+    if (!resolvedFrom || !resolvedTo) {
+      throw new Error(
+        'Could not identify one of those locations. Try a more specific name — e.g. add "station" or a postcode.'
+      );
+    }
+
+    result = await tflFetch(`/Journey/JourneyResults/${encodeURIComponent(resolvedFrom)}/to/${encodeURIComponent(resolvedTo)}`);
+  }
+
+  return result;
 }
 
 // Nearby stop points (bus stops, stations) around a lat/lon.

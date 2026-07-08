@@ -1,0 +1,14 @@
+.sustain-chart { margin-bottom: 1rem; }
+
+.goal-bar {
+  height: 10px;
+  background: var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 0.6rem;
+}
+.goal-bar__fill {
+  height: 100%;
+  background: var(--line-cycle);
+  transition: width 0.3s ease;
+}

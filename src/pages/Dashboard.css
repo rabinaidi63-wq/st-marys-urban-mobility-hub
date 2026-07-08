@@ -1,4 +1,6 @@
-.dashboard-summary { margin-bottom: 1rem; }
+.dashboard-summary {
+  margin-bottom: 1rem;
+}
 
 .dashboard-form {
   display: grid;
@@ -7,8 +9,14 @@
   align-items: end;
   margin: 1rem 0 2rem;
 }
-.dashboard-form .field { margin-bottom: 0; }
-@media (max-width: 960px) { .dashboard-form { grid-template-columns: 1fr 1fr; } }
+.dashboard-form .field {
+  margin-bottom: 0;
+}
+@media (max-width: 960px) {
+  .dashboard-form {
+    grid-template-columns: 1fr 1fr;
+  }
+}
 
 .dashboard-list {
   list-style: none;
@@ -21,4 +29,8 @@
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
+}
+.dashboard-insight {
+  border-left: 5px solid var(--line-rail);
+  margin-bottom: 1rem;
 }

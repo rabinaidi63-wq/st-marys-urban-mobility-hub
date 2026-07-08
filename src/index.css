@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+:root {
+  /* Palette — drawn from transit route-line coding */
+  --ink: #0f1b2d;
+  --ink-soft: #2b3a4f;
+  --paper: #f6f4ee;
+  --paper-raised: #ffffff;
+  --line-bus: #c8102e;
+  --line-rail: #1b4f9c;
+  --line-cycle: #00843d;
+  --line-walk: #d98c1f;
+  --border: #d9d4c7;
+  --focus: #1b4f9c;
+
+  /* Type */
+  --font-display: 'Archivo', system-ui, sans-serif;
+  --font-body: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-data: 'IBM Plex Mono', 'SFMono-Regular', monospace;
+
+  --radius-sm: 3px;
+  --radius-md: 6px;
+
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1.08;
+  margin: 0 0 0.5em;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: clamp(2rem, 4vw, 3.2rem); }
+h2 { font-size: clamp(1.5rem, 2.6vw, 2.1rem); }
+h3 { font-size: 1.25rem; font-weight: 700; }
+
+p { margin: 0 0 1em; }
+
+a {
+  color: var(--line-rail);
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+button, input, select {
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+/* Visible focus for keyboard users everywhere */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+.container {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.page {
+  flex: 1;
+  padding: 2.5rem 0 4rem;
+}
+
+.eyebrow {
+  font-family: var(--font-data);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.card {
+  background: var(--paper-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 2px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.65rem 1.3rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: transform 0.12s ease, background 0.12s ease;
+}
+.btn:hover { background: var(--ink-soft); }
+.btn:active { transform: translateY(1px); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--ink);
+}
+.btn-outline:hover { background: var(--ink); color: var(--paper); }
+
+.btn-sm { padding: 0.4rem 0.9rem; font-size: 0.85rem; }
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1.1rem;
+}
+.field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+.field input, .field select {
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.75rem;
+  background: var(--paper-raised);
+  color: var(--ink);
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 720px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}
+
+.data-figure {
+  font-family: var(--font-data);
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  background: var(--paper-raised);
+}
+.site-footer__row {
+  padding: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+/* Route-line accent bar — the page's signature device */
+.route-divider {
+  display: flex;
+  height: 6px;
+  width: 100%;
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 0.5rem 0 2rem;
+}
+.route-divider span { flex: 1; }
+.route-divider .bus { background: var(--line-bus); }
+.route-divider .rail { background: var(--line-rail); }
+.route-divider .cycle { background: var(--line-cycle); }
+.route-divider .walk { background: var(--line-walk); }

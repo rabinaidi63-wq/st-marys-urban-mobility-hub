@@ -1,9 +1,19 @@
-.status-ticker {
+/* Compound selector deliberately: this component uses className
+   "status-ticker card", and .card's specificity is equal to a bare
+   .status-ticker selector, so load order alone would decide the
+   winner. .status-ticker.card guarantees higher specificity. */
+.status-ticker.card {
   background: var(--ink);
   color: var(--paper);
   border: none;
 }
-.status-ticker .eyebrow { color: #9db0c9; }
+.status-ticker .eyebrow {
+  color: #9db0c9;
+}
+
+.status-ticker__name {
+  color: var(--paper);
+}
 
 .status-ticker__head {
   display: flex;
@@ -11,8 +21,16 @@
   align-items: baseline;
   margin-bottom: 0.9rem;
 }
-.status-ticker__meta { font-family: var(--font-data); font-size: 0.75rem; color: #9db0c9; }
-.status-ticker__error { font-size: 0.9rem; color: #d9a0a0; margin: 0; }
+.status-ticker__meta {
+  font-family: var(--font-data);
+  font-size: 0.75rem;
+  color: #9db0c9;
+}
+.status-ticker__error {
+  font-size: 0.9rem;
+  color: #d9a0a0;
+  margin: 0;
+}
 
 .status-ticker__list {
   list-style: none;
@@ -28,10 +46,20 @@
   font-family: var(--font-data);
   font-size: 0.85rem;
   padding: 0.4rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
-.status-ticker__list li:last-child { border-bottom: none; }
-.status-ticker__name { font-weight: 600; }
-.status-ticker__status { color: #9db0c9; }
-.is-disrupted .status-ticker__status { color: var(--line-walk); }
-.is-good .status-ticker__status { color: #6fcf97; }
+.status-ticker__list li:last-child {
+  border-bottom: none;
+}
+.status-ticker__name {
+  font-weight: 600;
+}
+.status-ticker__status {
+  color: #9db0c9;
+}
+.is-disrupted .status-ticker__status {
+  color: var(--line-walk);
+}
+.is-good .status-ticker__status {
+  color: #6fcf97;
+}

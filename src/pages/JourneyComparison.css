@@ -1,0 +1,22 @@
+.compare-form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  align-items: end;
+  margin-bottom: 1.5rem;
+}
+.compare-form .field { margin-bottom: 0; }
+@media (max-width: 720px) { .compare-form { grid-template-columns: 1fr; } }
+
+.compare-results { margin-bottom: 1.25rem; }
+.compare-result { border-top: 5px solid; }
+.compare-result dl { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 0.75rem 0 0; }
+.compare-result dt { font-size: 0.8rem; color: var(--ink-soft); margin: 0; }
+.compare-result dd { margin: 0; font-size: 1.3rem; }
+
+.compare-verdict {
+  background: var(--paper-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+}

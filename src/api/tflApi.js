@@ -61,13 +61,14 @@ export async function planJourney(from, to) {
 }
 
 // Nearby stop points (bus stops, stations) around a lat/lon.
-export function getNearbyStops(lat, lon, radius = 500) {
-  return tflFetch('/StopPoint', {
+export async function getNearbyStops(lat, lon, radius = 500) {
+  const result = await tflFetch('/StopPoint', {
     lat,
     lon,
     radius,
     stopTypes: 'NaptanPublicBusCoachTram,NaptanMetroStation,NaptanRailStation',
   });
+  return result?.stopPoints ?? [];
 }
 
 // Santander Cycles (bike share) docking stations with live availability.
